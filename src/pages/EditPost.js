@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Editor from "../components/Editor";
 import axios from "axios";
+import { SERVER_URL } from "../services/server";
 
 const EditPost = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const EditPost = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/post/${id}`)
+      .get(`${SERVER_URL}post/${id}`)
       .then((res) => {
         setTitle(res.data.title);
         setSummary(res.data.summary);
@@ -36,8 +37,11 @@ const EditPost = () => {
     }
 
     axios
-      .put("http://localhost:4000/post", data, {
-        headers: { "Content-Type": "multipart/form-data" },
+      .put(`${SERVER_URL}post`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "*",
+        },
         withCredentials: true,
       })
       .then((res) => {

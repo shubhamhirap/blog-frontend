@@ -2,18 +2,19 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { SERVER_URL } from "../services/server";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const {setUserInfo} = useContext(UserContext)
+  const { setUserInfo } = useContext(UserContext);
 
   function login(e) {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:4000/login",
+        `${SERVER_URL}login`,
         { username, password },
         {
           headers: { "Content-Type": "application/json" },
@@ -22,7 +23,7 @@ const LoginPage = () => {
       )
       .then((res) => {
         if (res.data) {
-          setUserInfo(res.data)
+          setUserInfo(res.data);
           setRedirect(true);
         } else {
           alert("wrong credentials");
@@ -44,7 +45,7 @@ const LoginPage = () => {
         id="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="username"
+        placeholder="Username"
       />
       <input
         type="password"
@@ -52,7 +53,7 @@ const LoginPage = () => {
         id="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
+        placeholder="Password"
       />
       <button type="submit">Login</button>
     </form>

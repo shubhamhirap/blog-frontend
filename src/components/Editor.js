@@ -5,7 +5,8 @@ import "react-quill/dist/quill.snow.css";
 const modules = {
   toolbar: [
     [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
+    ["bold", "italic", "underline", "strike"],
+    ["blockquote", "code-block"],
     [
       { list: "ordered" },
       { list: "bullet" },
@@ -24,6 +25,7 @@ const formats = [
   "underline",
   "strike",
   "blockquote",
+  "code-block",
   "list",
   "bullet",
   "indent",
@@ -34,6 +36,7 @@ const formats = [
 const Editor = ({ value, onChange }) => {
   return (
     <ReactQuill
+    className="editor"
       value={value}
       onChange={onChange}
       modules={modules}

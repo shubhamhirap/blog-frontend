@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
 import axios from "axios";
+import { SERVER_URL } from "../services/server";
 
 const IndexPage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/post")
+      .get(`${SERVER_URL}post`)
       .then((res) => {
         setPosts(res.data);
       })
@@ -18,7 +19,7 @@ const IndexPage = () => {
     <>
       {posts.length > 0 &&
         posts.map((post) => (
-          <React.Fragment>
+          <React.Fragment key={post._id}>
             <Post {...post} />
           </React.Fragment>
         ))}

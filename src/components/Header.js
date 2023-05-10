@@ -2,16 +2,17 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import { SERVER_URL } from "../services/server";
 
 const Header = () => {
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/profile", {
+      .get(`${SERVER_URL}profile`, {
         withCredentials: true,
       })
       .then((userInfo) => {
-        setUserInfo(userInfo);
+        setUserInfo(userInfo.data);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -19,7 +20,7 @@ const Header = () => {
   function logout() {
     axios
       .post(
-        "http://localhost:4000/logout",
+        `${SERVER_URL}logout`,
         {},
         {
           withCredentials: true,

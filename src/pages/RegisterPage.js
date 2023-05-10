@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { SERVER_URL } from "../services/server";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -12,7 +13,7 @@ const RegisterPage = () => {
   function register(e) {
     e.preventDefault();
     axios.post(
-      "http://localhost:4000/register",
+      `${SERVER_URL}register`,
       { name, username, password },
       {
         headers: {
@@ -33,7 +34,7 @@ const RegisterPage = () => {
         id="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Enter your name"
+        placeholder="Name"
       />
       <input
         type="text"
@@ -41,7 +42,7 @@ const RegisterPage = () => {
         id="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="username"
+        placeholder="Username"
       />
       <input
         type="password"
@@ -49,7 +50,7 @@ const RegisterPage = () => {
         id="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
+        placeholder="Password"
       />
       <button type="submit">Register</button>
     </form>

@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../context/UserContext";
+import { SERVER_URL } from "../services/server";
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null);
@@ -12,7 +13,7 @@ const PostPage = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/post/${id}`)
+      .get(`${SERVER_URL}post/${id}`)
       .then((res) => {
         setPostInfo(res.data);
       })
@@ -49,7 +50,7 @@ const PostPage = () => {
           </div>
         )}
         <div className="image">
-          <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
+          <img src={`${SERVER_URL}${postInfo.cover}`} alt="" />
         </div>
         <div
           className="content"

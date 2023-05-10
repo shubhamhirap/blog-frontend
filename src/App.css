@@ -4,12 +4,13 @@
 body {
   color: #333;
 }
-a{
+a {
   cursor: pointer;
 }
 img {
   max-width: 100%;
 }
+
 main {
   padding: 10px;
   max-width: 960px;
@@ -87,7 +88,7 @@ div.post div.texts p.info p.summary {
 
 form.register,
 form.login {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -95,7 +96,7 @@ input {
   display: block;
   width: 100%;
   margin-bottom: 5px;
-  padding: 5px 8px;
+  padding: 8px 8px;
   border: 2px solid #ddd;
   border-radius: 5px;
   background-color: #fff;
@@ -109,7 +110,9 @@ button {
   color: #fff;
   border: 0;
   border-radius: 5px;
-  padding: 7px 0;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 form.login h1,
@@ -175,4 +178,19 @@ div.post-page a.edit-btn {
 
 a svg {
   height: 20px;
+}
+
+.quill.editor {
+  border: 2px solid #ddd;
+  border-radius: 7px;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.ql-container.ql-snow {
+  height: 220px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

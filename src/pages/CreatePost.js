@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Editor from "../components/Editor";
+import { SERVER_URL } from "../services/server";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -21,8 +22,11 @@ const CreatePost = () => {
     data.set("file", files[0]);
 
     axios
-      .post("http://localhost:4000/post", data, {
-        headers: { "Content-Type": "multipart/form-data" },
+      .post(`${SERVER_URL}post`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "*",
+        },
         withCredentials: true,
       })
       .then((res) => {
